@@ -1,0 +1,8 @@
+{
+  "cSpell.words": [
+    "Tiptap"
+  ],
+  "tailwindCSS.experimental.classRegex": [
+    "class:\\s*?[\"'`]([^\"'`]*).*?,"
+  ]
+}

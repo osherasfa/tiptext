@@ -3,9 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.10",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@tiptap/extension-bold": "^2.1.16",
+    "@tiptap/extension-document": "^2.1.16",
+    "@tiptap/extension-heading": "^2.1.16",
+    "@tiptap/extension-paragraph": "^2.1.16",
+    "@tiptap/extension-text": "^2.1.16",
+    "@tiptap/react": "^2.1.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -34,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
   }
 }
