@@ -8,8 +8,9 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
+            fontFamily: 'Inter',
             'h1, h2, h3': {
-              'font-weight': '700'
+              fontWeight: '700',
             }
           },
         }

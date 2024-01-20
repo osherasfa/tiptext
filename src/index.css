@@ -2,7 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-.ProseMirror h1 {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+.ProseMirror > * { @apply mx-auto max-w-2xl !important; }
+.ProseMirror h1 { @apply text-3xl leading-9 m-0; }
+
+.bubbleMenu svg{ @apply h-4 w-4 text-neutral-500; }
+.bubbleMenu button{ @apply menu-button; }
+.bubbleMenu .is-active{ @apply bg-black/10 text-neutral-800; }
+
+@layer components{
+  .bubbleMenu{
+    @apply text-black inline-flex h-full leading-none gap-0.5 flex-row p-1 items-center bg-white rounded-lg dark:bg-black shadow-sm border border-neutral-200 dark:border-neutral-800;
+  }
+
+  .menu-button{
+    @apply flex items-center justify-center rounded-md bg-transparent border-transparent text-neutral-500 hover:bg-black/5 hover:text-neutral-700 active:bg-black/10 active:text-neutral-800 h-8 px-2 min-w-[2rem] w-auto;
+  }
 }

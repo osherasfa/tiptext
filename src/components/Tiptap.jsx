@@ -17,7 +17,7 @@ const Tiptap = () => {
                       Heading.configure({ 
                         levels: [1, 2, 3],
                         HTMLAttributes: {
-                          class: 'bg-green-500'
+                          
                         }
                       }), 
                       Bold
@@ -25,7 +25,7 @@ const Tiptap = () => {
         content: `<h1>🔥 Next.js + Tiptap Block Editor Template 12</h1>`,
         editorProps: {
           attributes: {
-            class: 'prose !prose-neutral prose-sm sm:prose lg:prose-lg xl:prose-2xl m-5 focus:outline-none outline-none dark:prose-invert min-h-full bg-red-500'
+            class: 'prose !prose-neutral prose-sm sm:prose lg:prose-lg xl:prose-2xl focus:outline-none outline-none dark:prose-invert px-8 py-16 !max-w-full min-h-full'
           }
         }
       })
@@ -39,14 +39,14 @@ const Tiptap = () => {
   }, [isEditable, editor])
 
   return (
-    <>
+    <div className='relative flex flex-col flex-1 h-screen overflow-hidden'>
       <div>
         Editable
         <input type="checkbox" checked={isEditable} onChange={() => setIsEditable(!isEditable)} />
       </div>
       {editor && <BubbleMenu editor={editor} />}
-      <EditorContent editor={editor} />
-    </>
+      <EditorContent className='flex-1 overflow-y-auto mt-[25px]' editor={editor} />
+    </div>
   )
 }
 
