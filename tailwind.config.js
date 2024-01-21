@@ -3,18 +3,12 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
-      typography: {
-        DEFAULT: {
-          css: {
-            fontFamily: 'Inter',
-            'h1, h2, h3': {
-              fontWeight: '700',
-            }
-          },
-        }
-      }
+      fontFamily: {
+        'Inter': ['Inter', 'sans-serif'],
+      },
     },
   },
   plugins: [

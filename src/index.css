@@ -2,16 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-.ProseMirror > * { @apply mx-auto max-w-2xl !important; }
-.ProseMirror h1 { @apply text-3xl leading-9 m-0; }
+html, body, #root, .App{
+  height: 100%;
+}
 
-.bubbleMenu svg{ @apply h-4 w-4 text-neutral-500; }
-.bubbleMenu button{ @apply menu-button; }
-.bubbleMenu .is-active{ @apply bg-black/10 text-neutral-800; }
+.ProseMirror { @apply prose prose-neutral outline-none font-Inter px-8 py-16 max-w-full min-h-full; }
+.ProseMirror > * { @apply mx-auto max-w-2xl !important; }
+.ProseMirror>:first-child:first-child { @apply mt-0; }
+
+/* Typography */
+.ProseMirror h1 { @apply text-3xl font-bold my-0 mt-12; }
+/* .ProseMirror > p against .ProseMirror p  */
+.ProseMirror p { @apply my-6 leading-[1.625]; }
+.ProseMirror a { @apply  font-bold text-blue-500; }
+
+/* Buttons & Icons */
+.bubble-menu svg{ @apply h-4 w-4 text-neutral-500; }
+.bubble-menu button{ @apply menu-button; }
+.bubble-menu .is-active{ @apply bg-black/10 text-neutral-800; }
 
 @layer components{
-  .bubbleMenu{
-    @apply text-black inline-flex h-full leading-none gap-0.5 flex-row p-1 items-center bg-white rounded-lg dark:bg-black shadow-sm border border-neutral-200 dark:border-neutral-800;
+  .bubble-menu{
+    @apply text-black inline-flex h-full leading-none gap-0.5 flex-row p-1 items-center bg-white rounded-lg shadow-sm border border-neutral-200;
   }
 
   .menu-button{
