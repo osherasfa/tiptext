@@ -1,11 +1,14 @@
+import React from 'react';
 import { BubbleMenu } from '@tiptap/react'
 import { FaH1, FaBold, FaLink } from '../assets/icons/menu-icons';
 import LinkMenu from './menus/LinkMenu';
 
 function CustomBubbleMenu({ editor }) {
-  const isActive = (action, options = { on: 'is-active', off: '' }) => editor.isActive(action, action === 'heading' && { level: 'level' in options ? options.level : 1 }) ? options.on : options.off
+  const [ popupLink, setPopupLink ] = React.useState(false)
+
+  const isActive = (action, options = {}) => editor.isActive(action, action === 'heading' && { level: options.level }) ? 'is-active' : ''
   
-  const toggle = (action, options = { level: 1, href: 'https://www.google.com', target: '_blank' }) => {
+  const toggle = (action, options = {}) => {
     const pre = editor.chain().focus()
     switch (action) {
       default:
@@ -22,11 +25,17 @@ function CustomBubbleMenu({ editor }) {
     pre.run()
   }
 
+  React.useEffect(() => {
+    editor.on('focus', () => {
+      setPopupLink(false)
+    })
+  }, [editor])
+
   return (
     <BubbleMenu className='bubble-menu' editor={editor} tippyOptions={{ duration: 100, moveTransition: 'transform 0.2s ease-out'}}>
       <span aria-hidden='true'>
         <button
-          onClick={() => toggle('heading')}
+          onClick={() => toggle('heading', { level: 1 })}
           className={isActive('heading')}
         >
           <FaH1/>
@@ -42,12 +51,12 @@ function CustomBubbleMenu({ editor }) {
       </span>
       <span aria-hidden='true'>
         <button
-          onClick={() => toggle('link')}
+          onClick={() => isActive('link') ? editor.chain().focus().unsetLink().run() : setPopupLink(!popupLink)}
           className={isActive('link')}
         >
           <FaLink/>
         </button>
-        {editor.isActive('link') && <LinkMenu/>}
+        {popupLink && <LinkMenu toggleLink={link => toggle('link', link)} togglePopup={state => setPopupLink(state)} />}
       </span>
     </BubbleMenu>
   )
