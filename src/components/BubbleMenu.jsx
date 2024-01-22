@@ -1,28 +1,25 @@
 import React from 'react';
 import { BubbleMenu } from '@tiptap/react'
-import { FaH1, FaBold, FaLink } from '../assets/icons/menu-icons';
+import { FaH1, FaBold, FaItalic, FaUnderline, FaStrikeThrough, FaCode, FaHighlight, FaLink } from '../assets/icons/menu-icons';
 import LinkMenu from './menus/LinkMenu';
 
 function CustomBubbleMenu({ editor }) {
   const [ popupLink, setPopupLink ] = React.useState(false)
-
-  const isActive = (action, options = {}) => editor.isActive(action, action === 'heading' && { level: options.level }) ? 'is-active' : ''
   
-  const toggle = (action, options = {}) => {
-    const pre = editor.chain().focus()
-    switch (action) {
-      default:
-        throw new Error(`Unsupported action: ${action}`)
-      case 'heading':
-        pre.toggleHeading({ level: options.level })
-        break;
-      case 'bold':
-        pre.toggleBold()
-        break;
-      case 'link':
-        pre.toggleLink({ href: options.href, target: options.target})
+  const toggle = (name, { level = 1, color = 'red', href = '', target = '_blank' } = {}) => {
+    const types = {
+      'heading': pre => pre.toggleHeading({ level }),
+      'bold': pre => pre.toggleBold(),
+      'italic': pre => pre.toggleItalic(),
+      'underline': pre => pre.toggleUnderline(),
+      'strike': pre => pre.toggleStrike(),
+      'code': pre => pre.toggleCode(),
+      'highlight': pre => pre.toggleHighlight({ color }),
+      'link': pre =>  pre.toggleLink({ href, target })
     }
-    pre.run()
+
+    types[name] ? types[name](editor.chain().focus()).run() : console.error(`Invalid toggle type: ${name}`)
+  
   }
 
   React.useEffect(() => {
@@ -36,7 +33,7 @@ function CustomBubbleMenu({ editor }) {
       <span aria-hidden='true'>
         <button
           onClick={() => toggle('heading', { level: 1 })}
-          className={isActive('heading')}
+          className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
         >
           <FaH1/>
         </button>
@@ -44,15 +41,58 @@ function CustomBubbleMenu({ editor }) {
       <span aria-hidden='true'>
         <button
           onClick={() => toggle('bold')}
-          className={isActive('bold')}
+          className={editor.isActive('bold') ? 'is-active' : ''}
         >
           <FaBold/>
         </button>
       </span>
       <span aria-hidden='true'>
         <button
-          onClick={() => isActive('link') ? editor.chain().focus().unsetLink().run() : setPopupLink(!popupLink)}
-          className={isActive('link')}
+          onClick={() => toggle('italic')}
+          className={editor.isActive('italic') ? 'is-active' : ''}
+        >
+          <FaItalic/>
+        </button>
+      </span>
+      <span aria-hidden='true'>
+        <button
+          onClick={() => toggle('underline')}
+          className={editor.isActive('underline') ? 'is-active' : ''}
+        >
+          <FaUnderline/>
+        </button>
+      </span>
+      <span aria-hidden='true'>
+        <button
+          onClick={() => toggle('strike')}
+          className={editor.isActive('strike') ? 'is-active' : ''}
+        >
+          <FaStrikeThrough/>
+        </button>
+      </span>
+      <span aria-hidden='true'>
+        <button
+          onClick={() => toggle('code')}
+          className={editor.isActive('code') ? 'is-active' : ''}
+        >
+          <FaCode/>
+        </button>
+      </span>
+      <span aria-hidden='true'>
+        <button
+          onClick={() => toggle('highlight', { color: 'red' })}
+          className={editor.isActive('highlight', { color: 'red' }) ? 'is-active' : ''}
+        >
+          <FaHighlight/>
+        </button>
+      </span>
+
+
+
+      <span aria-hidden='true'>
+        <button
+          onClick={() => editor.isActive('link') ? editor.chain().focus().unsetLink().run() : setPopupLink(!popupLink)}
+          className={editor.isActive('link') ? 'is-active' : ''}
         >
           <FaLink/>
         </button>
