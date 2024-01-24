@@ -1,12 +1,13 @@
 import React from 'react';
 import { BubbleMenu } from '@tiptap/react'
-import { FaH1, FaBold, FaItalic, FaUnderline, FaStrikeThrough, FaCode, FaHighlight, FaLink } from '../assets/icons/menu-icons';
-import LinkMenu from './menus/LinkMenu';
+import { FaH1, FaBold, FaItalic, FaUnderline, FaStrikeThrough, FaCode, FaHighlight, FaLink, FaCodeBlock } from '../../assets/icons/menu-icons';
+import LinkMenu from './LinkMenu';
 
 function CustomBubbleMenu({ editor }) {
   const [ popupLink, setPopupLink ] = React.useState(false)
+  const editorRef = React.useRef(editor)
   
-  const toggle = (name, { level = 1, color = 'red', href = '', target = '_blank' } = {}) => {
+  const toggle = (name, { level = 1, color = '#ffe066', href = '', target = '_blank' } = {}) => {
     const types = {
       'heading': pre => pre.toggleHeading({ level }),
       'bold': pre => pre.toggleBold(),
@@ -15,18 +16,19 @@ function CustomBubbleMenu({ editor }) {
       'strike': pre => pre.toggleStrike(),
       'code': pre => pre.toggleCode(),
       'highlight': pre => pre.toggleHighlight({ color }),
-      'link': pre =>  pre.toggleLink({ href, target })
+      'link': pre =>  pre.toggleLink({ href, target }),
+      'codeBlock': pre => pre.toggleCodeBlock(),
     }
 
     types[name] ? types[name](editor.chain().focus()).run() : console.error(`Invalid toggle type: ${name}`)
-  
   }
 
   React.useEffect(() => {
-    editor.on('focus', () => {
-      setPopupLink(false)
-    })
-  }, [editor])
+    const editorEvents = editorRef.current
+    editorEvents.on('focus', () => setPopupLink(false))
+
+    return () => editorEvents.off('focus', () => setPopupLink(false))
+  }, [])
 
   return (
     <BubbleMenu className='bubble-menu' editor={editor} tippyOptions={{ duration: 100, moveTransition: 'transform 0.2s ease-out'}}>
@@ -80,8 +82,16 @@ function CustomBubbleMenu({ editor }) {
       </span>
       <span aria-hidden='true'>
         <button
-          onClick={() => toggle('highlight', { color: 'red' })}
-          className={editor.isActive('highlight', { color: 'red' }) ? 'is-active' : ''}
+          onClick={() => toggle('codeBlock')}
+          className={editor.isActive('codeBlock') ? 'is-active' : ''}
+        >
+          <FaCodeBlock/>
+        </button>
+      </span>
+      <span aria-hidden='true'>
+        <button
+          onClick={() => toggle('highlight', { color: '#ffe066' })}
+          className={editor.isActive('highlight', { color: '#ffe066' }) ? 'is-active' : ''}
         >
           <FaHighlight/>
         </button>
@@ -96,7 +106,7 @@ function CustomBubbleMenu({ editor }) {
         >
           <FaLink/>
         </button>
-        {popupLink && <LinkMenu toggleLink={link => toggle('link', link)} togglePopup={state => setPopupLink(state)} />}
+        {popupLink && <LinkMenu toggleLink={link => toggle('link', link)} />}
       </span>
     </BubbleMenu>
   )

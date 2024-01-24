@@ -5,6 +5,7 @@ import { ReactComponent as FaItalic } from './menu/FaItalic.svg';
 import { ReactComponent as FaUnderline } from './menu/FaUnderline.svg';
 import { ReactComponent as FaStrikeThrough } from './menu/FaStrikeThrough.svg';
 import { ReactComponent as FaCode } from './menu/FaCode.svg';
+import { ReactComponent as FaCodeBlock } from './menu/FaCodeBlock.svg';
 import { ReactComponent as FaHighlight } from './menu/FaHighlight.svg';
 
 export { 
@@ -16,4 +17,5 @@ export {
   FaStrikeThrough,
   FaCode,
   FaHighlight,
+  FaCodeBlock,
 };

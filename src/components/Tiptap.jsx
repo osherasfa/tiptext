@@ -1,41 +1,24 @@
 import React, { useEffect } from 'react'
-import BubbleMenu from './BubbleMenu'
+import BubbleMenu from './menus/BubbleMenu'
 
-import { EditorContent, useEditor, } from '@tiptap/react'
-import Document from '@tiptap/extension-document'
-import Text from '@tiptap/extension-text'
-import Paragraph from '@tiptap/extension-paragraph'
-import Heading from '@tiptap/extension-heading'
-import Bold from '@tiptap/extension-bold'
-import Italic from '@tiptap/extension-italic'
-import Underline from '@tiptap/extension-underline'
-import Link from '@tiptap/extension-link'
-import Strike from '@tiptap/extension-strike'
-import Code from '@tiptap/extension-code'
-import Highlight from '@tiptap/extension-highlight'
+import { EditorContent, useEditor } from '@tiptap/react'
+import { extensions } from './utilities'
 
 const Tiptap = () => {
     const editor = useEditor({
-        extensions: [
-                      Document,
-                      Text, 
-                      Paragraph, 
-                      Heading.configure({ 
-                        levels: [1, 2, 3],
-                      }), 
-                      Bold,
-                      Italic,
-                      Underline,
-                      Strike,
-                      Code,
-                      Highlight,
-                      Link.configure({
-                        openOnClick: false,
-                        autolink: true,
-                      })
-                    ],
-        content: `<h1>🔥 Next.js + Tiptap Block Editor Template 12</h1>
-        <p>Welcome to our React Block Editor Template built on top of <a target="_blank" rel="noopener noreferrer nofollow" href="https://tiptap.dev/">Tiptap</a>, <a target="_blank" rel="noopener noreferrer nofollow" href="https://nextjs.org/">Next.js</a> and <a target="_blank" rel="noopener noreferrer nofollow" href="https://tailwindcss.com/">Tailwind</a>. This project can be a good starting point for your own implementation of a block editor.</p>`,
+        extensions,
+        content: `
+        <h1 id="548224f6-fcca-4270-b086-cf42d824f997" data-toc-id="548224f6-fcca-4270-b086-cf42d824f997"><span data-name="fire" data-type="emoji" contenteditable="false">🔥</span> Next.js + Tiptap Block Editor Template 12</h1>
+        <p>Welcome to our React Block Editor Template built on top of <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://tiptap.dev/">Tiptap</a>, <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://nextjs.org/">Next.js</a> <span style="color: #d9f99d"> and </span><a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://tailwindcss.com/">Tailwind</a>. This project can be a good starting point for your own implementation of a block editor.</p>
+        <pre><code><span class="hljs-keyword">import</span> { useEditor, <span class="hljs-title class_">EditorContent</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'@tiptap/react'</span>
+      
+      <span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>() {
+       <span class="hljs-keyword">const</span> editor = <span class="hljs-title function_">useEditor</span>()
+      
+       <span class="hljs-keyword">return</span> <span class="xml hljs-tag">&lt;</span><span class="xml hljs-tag hljs-name">EditorContent</span><span class="xml hljs-tag"> </span><span class="xml hljs-tag hljs-attr">editor</span><span class="xml hljs-tag">=</span><span class="xml hljs-tag hljs-string">{editor}</span><span class="xml hljs-tag"> /&gt;</span>
+      }</code></pre>
+        <p data-placeholder="" class="is-empty"><br class="ProseMirror-trailingBreak"></p>
+        `,
       })
 
   const [isEditable, setIsEditable] = React.useState(true)
