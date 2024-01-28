@@ -1,13 +1,13 @@
 import React from 'react';
 import { BubbleMenu } from '@tiptap/react'
-import { FaH1, FaBold, FaItalic, FaUnderline, FaStrikeThrough, FaCode, FaHighlight, FaLink, FaCodeBlock } from '../../assets/icons/menu-icons';
+import { FaH1, FaBold, FaItalic, FaUnderline, FaStrikeThrough, FaCode, FaHighlight, FaLink, FaCodeBlock, FaUl, FaColor } from '../../assets/icons/menu-icons';
 import LinkMenu from './LinkMenu';
 
 function CustomBubbleMenu({ editor }) {
   const [ popupLink, setPopupLink ] = React.useState(false)
   const editorRef = React.useRef(editor)
   
-  const toggle = (name, { level = 1, color = '#ffe066', href = '', target = '_blank' } = {}) => {
+  const toggle = (name, { level = 1, color, href = '', target = '_blank', fontFamily } = {}) => {
     const types = {
       'heading': pre => pre.toggleHeading({ level }),
       'bold': pre => pre.toggleBold(),
@@ -18,6 +18,15 @@ function CustomBubbleMenu({ editor }) {
       'highlight': pre => pre.toggleHighlight({ color }),
       'link': pre =>  pre.toggleLink({ href, target }),
       'codeBlock': pre => pre.toggleCodeBlock(),
+      'listItem': pre => pre.toggleBulletList(),
+      'textStyle': pre => {
+        if(color)
+          return editor.isActive('textStyle', { color }) ? pre.unsetColor() : pre.setColor(color)
+        else if(fontFamily)
+          return editor.isActive('textStyle', { fontFamily }) ? pre.unsetFontFamily() : pre.setFontFamily(fontFamily)
+        else
+          console.error(`Invalid property type: ${name}`)
+      }
     }
 
     types[name] ? types[name](editor.chain().focus()).run() : console.error(`Invalid toggle type: ${name}`)
@@ -38,6 +47,22 @@ function CustomBubbleMenu({ editor }) {
           className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
         >
           <FaH1/>
+        </button>
+      </span>
+      <span aria-hidden='true'>
+        <button
+          onClick={() => toggle('listItem')}
+          className={editor.isActive('listItem') ? 'is-active' : ''}
+        >
+          <FaUl/>
+        </button>
+      </span>
+      <span aria-hidden='true'>
+        <button
+          onClick={() => toggle('textStyle', { fontFamily: 'monospace' })}
+          className={editor.isActive('textStyle', { fontFamily: 'monospace' }) ? 'is-active' : ''}
+        >
+          monospace
         </button>
       </span>
       <span aria-hidden='true'>
@@ -96,9 +121,6 @@ function CustomBubbleMenu({ editor }) {
           <FaHighlight/>
         </button>
       </span>
-
-
-
       <span aria-hidden='true'>
         <button
           onClick={() => editor.isActive('link') ? editor.chain().focus().unsetLink().run() : setPopupLink(!popupLink)}
@@ -107,6 +129,14 @@ function CustomBubbleMenu({ editor }) {
           <FaLink/>
         </button>
         {popupLink && <LinkMenu toggleLink={link => toggle('link', link)} />}
+      </span>
+      <span aria-hidden='true'>
+        <button
+          onClick={() => toggle('textStyle', { color: 'red' })}
+          className={editor.isActive('textStyle', { color: 'red' }) ? 'is-active' : ''}
+        >
+          <FaColor/>
+        </button>
       </span>
     </BubbleMenu>
   )

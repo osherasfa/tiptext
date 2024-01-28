@@ -1,0 +1,190 @@
+<h1 id="4ff05e28-a0f2-4279-9af0-322307eda9ee" data-toc-id="4ff05e28-a0f2-4279-9af0-322307eda9ee">
+  <span data-name="fire" data-type="emoji" contenteditable="false">🔥</span> Next.js + Tiptap Block Editor Template 12
+</h1>
+<p>Welcome to our React Block Editor Template built on top of <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://tiptap.dev/">Tiptap</a>, <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://nextjs.org/">Next.js</a> and <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://tailwindcss.com/">Tailwind</a>. This project can be a good starting point for your own implementation of a block editor. </p>
+<pre>
+<code>
+<span class="hljs-keyword selection">import</span>
+<span class="selection"> { useEditor, </span>
+<span class="hljs-title class_ selection">EditorContent</span>
+<span class="selection"> } </span>
+<span class="hljs-keyword selection">from</span>
+<span class="selection"></span>
+<span class="hljs-string selection"> '@tiptap/react'</span>
+<br/>
+<br/>
+<span class="selection"></span>
+<span class="hljs-keyword selection">function </span>
+<span class="selection"></span>
+<span class="hljs-title function_ selection">App</span>
+<span class="selection">() { </span>
+<br/>
+<span class="hljs-keyword selection">  const</span>
+<span class="selection"> editor = </span>
+<span class="hljs-title function_ selection">useEditor</span><span class="selection">()</span>
+<br/>
+<br/>
+<span class="hljs-keyword selection">  return </span>
+<span class="selection"></span>
+<span class="xml hljs-tag selection">&lt;</span>
+<span class="xml hljs-tag hljs-name selection">EditorContent </span>
+<span class="xml hljs-tag selection"></span>
+<span class="xml hljs-tag hljs-attr selection">editor</span>
+<span class="xml hljs-tag selection">=</span>
+<span class="xml hljs-tag hljs-string selection">{editor}</span>
+<span class="xml hljs-tag selection"> /&gt;</span>
+<span class="selection">
+}</span>
+</code>
+</pre>
+<p>This editor includes features like:</p>
+<ul>
+  <li>
+    <p>A DragHandle including a DragHandle menu</p>
+  </li>
+  <li>
+    <p>A Slash menu that can be triggered via typing a <code>/</code> into an empty paragraph or by using the <strong>+ Button</strong> next to the drag handle </p>
+  </li>
+  <li>
+    <p>A TextFormatting menu that allows you to change the <span style="font-size: 18px">font size</span>, <strong>font weight</strong>, <span style="font-family: Georgia">font family</span>, <span style="color: #b91c1c">color</span>, <mark data-color="#7e7922" style="background-color: #7e7922; color: inherit">highlight</mark> and more </p>
+  </li>
+  <li>
+    <p>A Table of Contents that can be viewed via clicking on the button on the top left corner</p>
+  </li>
+  <li>
+    <p>Live collaboration including content synchronization and collaborative cursors</p>
+  </li>
+  <li>
+    <p>AI implementation with text and image generation and auto completion via the <code>TAB</code> key. </p>
+  </li>
+</ul>
+  <div class="react-renderer node-imageBlock" contenteditable="false" draggable="true">
+     <div data-node-view-wrapper="" style="white-space: normal;">
+        <div class="mx-auto" style="width: 100%;">
+           <div contenteditable="false"><img class="block" src="/placeholder-image.jpg" alt=""></div>
+        </div>
+     </div>
+  </div>
+  <h2 id="7efc9de3-d0a9-4e54-9ebe-0241ee1770d7" data-toc-id="7efc9de3-d0a9-4e54-9ebe-0241ee1770d7">Get started</h2>
+  <p>To access our block editor template, simply head over to your <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://cloud.tiptap.dev/react-templates">Tiptap Account</a> If you are not already a member, sign up for an account and complete the 2-minute React Template survey. Once finished, we will send you an invite to the private GitHub repository.</p>
+  <h2 id="7bcd2ec5-384b-4035-8717-d3924a81b85c" data-toc-id="7bcd2ec5-384b-4035-8717-d3924a81b85c">Installed extensions</h2>
+  <ul>
+     <li>
+        <p>@tiptap-pro/extension-ai</p>
+     </li>
+     <li>
+        <p>@tiptap-pro/extension-drag-handle</p>
+     </li>
+     <li>
+        <p>@tiptap-pro/extension-drag-handle-react</p>
+     </li>
+     <li>
+        <p>@tiptap-pro/extension-emoji</p>
+     </li>
+     <li>
+        <p>@tiptap-pro/extension-file-handler</p>
+     </li>
+     <li>
+        <p>@tiptap-pro/extension-mathematics</p>
+     </li>
+     <li>
+        <p>@tiptap-pro/extension-node-range</p>
+     </li>
+     <li>
+        <p>@tiptap-pro/extension-table-of-content</p>
+     </li>
+     <li>
+        <p>@tiptap-pro/extension-unique-id</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-bullet-list</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-character-count</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-code-block</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-code-block-lowlight</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-collaboration</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-collaboration-cursor</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-color</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-document</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-dropcursor</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-focus</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-font-family</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-heading</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-highlight</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-horizontal-rule</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-image</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-link</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-ordered-list</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-paragraph</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-placeholder</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-subscript</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-superscript</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-table</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-table-header</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-table-row</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-task-item</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-task-list</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-text-align</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-text-style</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-typography</p>
+     </li>
+     <li>
+        <p>@tiptap/extension-underline</p>
+     </li>
+  </ul>
+  <p data-placeholder="" class="is-empty"><br class="ProseMirror-trailingBreak"></p>

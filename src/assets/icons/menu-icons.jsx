@@ -7,6 +7,9 @@ import { ReactComponent as FaStrikeThrough } from './menu/FaStrikeThrough.svg';
 import { ReactComponent as FaCode } from './menu/FaCode.svg';
 import { ReactComponent as FaCodeBlock } from './menu/FaCodeBlock.svg';
 import { ReactComponent as FaHighlight } from './menu/FaHighlight.svg';
+import { ReactComponent as FaUl } from './menu/FaUl.svg';
+import { ReactComponent as FaColor } from './menu/FaColor.svg';
+import { ReactComponent as FaImage } from './menu/FaImage.svg';
 
 export { 
   FaH1,
@@ -18,4 +21,7 @@ export {
   FaCode,
   FaHighlight,
   FaCodeBlock,
+  FaUl,
+  FaColor,
+  FaImage,
 };
