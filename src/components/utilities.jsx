@@ -19,6 +19,9 @@ import { common, createLowlight } from 'lowlight'
 import { Extension } from '@tiptap/react';
 import Image from '@tiptap/extension-image'
 import History from '@tiptap/extension-history'
+import TaskList from '@tiptap/extension-task-list'
+import TaskItem from '@tiptap/extension-task-item'
+import OrderedList from '@tiptap/extension-ordered-list'
 
  export const FontSize = Extension.create({
     name: 'fontSize',
@@ -94,6 +97,9 @@ const extensions = [
     FontSize,
     Image,
     History,
+    TaskList,
+    TaskItem.configure({ nested: true }),
+    OrderedList,
   ]
 
 export { extensions }

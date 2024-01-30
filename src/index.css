@@ -9,28 +9,29 @@ html, body, #root, .App{
 .ProseMirror { @apply prose prose-neutral outline-none font-Inter px-8 py-16 max-w-full min-h-full; }
 .ProseMirror > * { @apply mx-auto max-w-2xl; }
 .ProseMirror>:first-child:first-child { @apply mt-0; }
+.ProseMirror p:first-child { @apply mt-0; }
+.ProseMirror p:last-child { @apply mb-0; }
 
-/* Typography */
+/* Typography style */
 .ProseMirror h1 { @apply text-3xl font-bold my-0 mt-12; }
 .ProseMirror p { @apply my-6 leading-[1.625]; }
 .ProseMirror a { @apply  font-bold text-blue-500; }
 .ProseMirror mark { @apply rounded decoration-clone p-1; }
-.ProseMirror code { @apply bg-neutral-900 text-white rounded-sm text-base font-normal; }
-.ProseMirror code::after, .ProseMirror code::before { @apply hidden; }
 .ProseMirror ul { @apply my-8 px-8; }
+.ProseMirror ul[data-type=taskList] { @apply p-0; }
+.ProseMirror ul[data-type=taskList] li { @apply flex list-none; }
+.ProseMirror ul[data-type=taskList] li>label { @apply mt-0.5 mr-2 select-none; }
+.ProseMirror ul[data-type=taskList] li[data-checked=true] { @apply line-through; }
 .ProseMirror ol li, .ProseMirror ol ol, .ProseMirror ol ul, .ProseMirror ul li, .ProseMirror ul ol, .ProseMirror ul ul { @apply my-1 p-0 text-black; }
 .ProseMirror li::marker { @apply text-black; }
-.ProseMirror p:first-child { @apply mt-0; }
-.ProseMirror p:last-child { @apply mb-0; }
-.ProseMirror img { @apply overflow-hidden rounded-xl border-2 border-transparent h-auto w-full max-w-[42rem]; }
-b, strong { 
-  font-weight: bolder !important;
-}
+b, strong { @apply font-bold; }
 
+/* Code style */
+.ProseMirror code { @apply bg-neutral-900 text-white rounded-sm text-base font-normal; }
+.ProseMirror code::after, .ProseMirror code::before { @apply hidden; }
 
 .ProseMirror pre { @apply my-12 rounded-l p-4 text-white bg-neutral-700 text-base border border-transparent; }
 .ProseMirror pre code { @apply text-inherit bg-inherit p-0; }
-
 .ProseMirror pre .hljs-comment,.ProseMirror pre .hljs-quote { 
   @apply text-neutral-400; 
 }
@@ -57,8 +58,10 @@ b, strong {
 }
 
 
-/* Buttons & Icons */
+/* Buttons, Icons, Images style */
+.ProseMirror img { @apply overflow-hidden rounded-xl border-2 border-transparent h-auto w-full max-w-[42rem]; }
 .bubble-menu svg{ @apply h-4 w-4 text-neutral-500; }
+.bubble-menu .arrow { width: .5rem; }
 .bubble-menu button{ @apply menu-button; }
 .bubble-menu .is-active{ @apply bg-black/10 text-neutral-800; }
 
@@ -70,4 +73,6 @@ b, strong {
   .menu-button{
     @apply flex items-center justify-center rounded-md bg-transparent border-transparent text-neutral-500 hover:bg-black/5 hover:text-neutral-700 active:bg-black/10 active:text-neutral-800 h-8 px-2 min-w-[2rem] w-auto;
   }
+
+  .type-menu_btn{ @apply w-full justify-start gap-2 text-sm font-medium; }
 }

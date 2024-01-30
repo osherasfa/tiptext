@@ -1,6 +1,6 @@
 import React from "react"
 import { FaLink } from "../../assets/icons/menu-icons"
-import Popup from "./Popup"
+import Popup from "../Popup"
 
 function LinkMenu({ toggleLink }){
     const handleSubmit = e => {

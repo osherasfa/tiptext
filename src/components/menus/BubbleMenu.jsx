@@ -1,14 +1,16 @@
 import React from 'react';
 import { BubbleMenu } from '@tiptap/react'
-import { FaH1, FaBold, FaItalic, FaUnderline, FaStrikeThrough, FaCode, FaHighlight, FaLink, FaCodeBlock, FaUl, FaColor } from '../../assets/icons/menu-icons';
+import { FaBold, FaItalic, FaUnderline, FaStrikeThrough, FaCode, FaHighlight, FaLink, FaCodeBlock, FaColor } from '../../assets/icons/menu-icons';
 import LinkMenu from './LinkMenu';
+import TypeMenu from './TypeMenu';
 
 function CustomBubbleMenu({ editor }) {
-  const [ popupLink, setPopupLink ] = React.useState(false)
+  const [ popup, setPopup ] = React.useState('')
   const editorRef = React.useRef(editor)
   
   const toggle = (name, { level = 1, color, href = '', target = '_blank', fontFamily } = {}) => {
     const types = {
+      'paragraph': pre => pre.setParagraph(),
       'heading': pre => pre.toggleHeading({ level }),
       'bold': pre => pre.toggleBold(),
       'italic': pre => pre.toggleItalic(),
@@ -18,7 +20,9 @@ function CustomBubbleMenu({ editor }) {
       'highlight': pre => pre.toggleHighlight({ color }),
       'link': pre =>  pre.toggleLink({ href, target }),
       'codeBlock': pre => pre.toggleCodeBlock(),
-      'listItem': pre => pre.toggleBulletList(),
+      'bulletList': pre => pre.toggleBulletList(),
+      'taskList': pre => pre.toggleTaskList(),
+      'orderedList': pre => pre.toggleOrderedList(),
       'textStyle': pre => {
         if(color)
           return editor.isActive('textStyle', { color }) ? pre.unsetColor() : pre.setColor(color)
@@ -34,28 +38,15 @@ function CustomBubbleMenu({ editor }) {
 
   React.useEffect(() => {
     const editorEvents = editorRef.current
-    editorEvents.on('focus', () => setPopupLink(false))
+    editorEvents.on('focus', () => setPopup(''))
 
-    return () => editorEvents.off('focus', () => setPopupLink(false))
+    return () => editorEvents.off('focus', () => setPopup(''))
   }, [])
 
   return (
     <BubbleMenu className='bubble-menu' editor={editor} tippyOptions={{ duration: 100, moveTransition: 'transform 0.2s ease-out'}}>
       <span aria-hidden='true'>
-        <button
-          onClick={() => toggle('heading', { level: 1 })}
-          className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
-        >
-          <FaH1/>
-        </button>
-      </span>
-      <span aria-hidden='true'>
-        <button
-          onClick={() => toggle('listItem')}
-          className={editor.isActive('listItem') ? 'is-active' : ''}
-        >
-          <FaUl/>
-        </button>
+        <TypeMenu editor={editor} popup={popup} setPopup={setPopup} toggle={toggle}/>
       </span>
       <span aria-hidden='true'>
         <button
@@ -123,12 +114,12 @@ function CustomBubbleMenu({ editor }) {
       </span>
       <span aria-hidden='true'>
         <button
-          onClick={() => editor.isActive('link') ? editor.chain().focus().unsetLink().run() : setPopupLink(!popupLink)}
+          onClick={() => editor.isActive('link') ? editor.chain().focus().unsetLink().run() : setPopup(popup === 'LinkMenu' ? '' : 'LinkMenu')}
           className={editor.isActive('link') ? 'is-active' : ''}
         >
           <FaLink/>
         </button>
-        {popupLink && <LinkMenu toggleLink={link => toggle('link', link)} />}
+        {popup === 'LinkMenu' && <LinkMenu toggleLink={link => toggle('link', link)} />}
       </span>
       <span aria-hidden='true'>
         <button

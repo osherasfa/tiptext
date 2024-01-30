@@ -4,19 +4,15 @@ import BubbleMenu from './menus/BubbleMenu'
 import { EditorContent, useEditor } from '@tiptap/react'
 import { extensions } from './utilities'
 
+
+let res = await fetch('./content.html')
+res = await res.text()
+
 const Tiptap = () => {
   const [isEditable, setIsEditable] = React.useState(true)
+  const editor = useEditor({ extensions, content: res })
 
-  const editor = useEditor({ extensions, content: '<p>Loading...</p>' })
-
-  useEffect(() => {
-    if (editor) {
-      editor.setEditable(isEditable)
-      fetch('./content.html')
-      .then(res => res.text())
-      .then(data => editor.commands.setContent(data))
-    }
-  }, [isEditable, editor])
+  useEffect(() => { editor?.setEditable(isEditable) }, [isEditable, editor])
 
   return (
     <div className='relative flex flex-col flex-1 h-full overflow-hidden'>
