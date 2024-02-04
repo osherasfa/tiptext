@@ -3,6 +3,7 @@ import { BubbleMenu } from '@tiptap/react'
 import { FaBold, FaItalic, FaUnderline, FaStrikeThrough, FaCode, FaHighlight, FaLink, FaCodeBlock, FaColor } from '../../assets/icons/menu-icons';
 import LinkMenu from './LinkMenu';
 import TypeMenu from './TypeMenu';
+import FontMenu from './FontMenu';
 
 function CustomBubbleMenu({ editor }) {
   const [ popup, setPopup ] = React.useState('')
@@ -49,12 +50,7 @@ function CustomBubbleMenu({ editor }) {
         <TypeMenu editor={editor} popup={popup} setPopup={setPopup} toggle={toggle}/>
       </span>
       <span aria-hidden='true'>
-        <button
-          onClick={() => toggle('textStyle', { fontFamily: 'monospace' })}
-          className={editor.isActive('textStyle', { fontFamily: 'monospace' }) ? 'is-active' : ''}
-        >
-          monospace
-        </button>
+        <FontMenu editor={editor} popup={popup} setPopup={setPopup} toggle={toggle}/>
       </span>
       <span aria-hidden='true'>
         <button

@@ -67,7 +67,7 @@ b, strong { @apply font-bold; }
 
 @layer components{
   .bubble-menu{
-    @apply text-black inline-flex h-full leading-none gap-0.5 flex-row p-1 items-center bg-white rounded-lg shadow-sm border border-neutral-200;
+    @apply text-black inline-flex font-Inter text-sm font-semibold h-full leading-none gap-0.5 flex-row p-1 items-center bg-white rounded-lg shadow-sm border border-neutral-200;
   }
 
   .menu-button{
