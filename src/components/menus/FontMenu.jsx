@@ -7,43 +7,42 @@ function FontMenu({ editor, popup, setPopup, toggle }) {
       <>
         <button
           onClick={() => setPopup(popup === 'FontMenu' ? '' : 'FontMenu')}
-          className={editor.isActive('textStyle', { fontFamily: 'monospace' }) ? 'is-active' : ''}
         >
-          monospace
+          {editor.getAttributes('textStyle').fontFamily || 'inter'}
           <FaArrow />
         </button>
         { 
         popup === 'FontMenu' && 
         <Popup className='flex flex-col items-start [&>button]:type-menu_btn text-neutral-800'>
             <button
-                onClick={() => toggle('textStyle', { fontFamily: 'inter' })}
-                className={editor.isActive('textStyle', { fontFamily: 'inter' }) ? 'is-active' : ''}
+                onClick={() => editor.commands.unsetFontFamily()}
+                className={ !editor.getAttributes('textStyle').fontFamily ? 'is-active' : ''}
             >
                 inter
             </button>
             <button
-                onClick={() => toggle('textStyle', { fontFamily: 'arial' })}
-                className={editor.isActive('textStyle', { fontFamily: 'arial' }) ? 'is-active' : ''}
+                onClick={() => toggle('textStyle', { fontFamily: 'Comic Sans MS, Comic Sans' })}
+                className={editor.isActive('textStyle', { fontFamily: 'Comic Sans MS, Comic Sans' }) ? 'is-active' : ''}
             >
-                arial
+                Comic Sans
             </button>
             <button
-                onClick={() => toggle('textStyle', { fontFamily: 'helvetica' })}
-                className={editor.isActive('textStyle', { fontFamily: 'helvetica' }) ? 'is-active' : ''}
+                onClick={() => toggle('textStyle', { fontFamily: 'serif' })}
+                className={editor.isActive('textStyle', { fontFamily: 'serif' }) ? 'is-active' : ''}
             >
-                helvetica
+                serif
             </button>
             <button
-                onClick={() => toggle('textStyle', { fontFamily: 'times new roman' })}
-                className={editor.isActive('textStyle', { fontFamily: 'times new roman' }) ? 'is-active' : ''}
+                onClick={() => toggle('textStyle', { fontFamily: 'monospace' })}
+                className={editor.isActive('textStyle', { fontFamily: 'monospace' }) ? 'is-active' : ''}
             >
-                times new roman
+                monospace
             </button>
             <button
-                onClick={() => toggle('textStyle', { fontFamily: 'garamond' })}
-                className={editor.isActive('textStyle', { fontFamily: 'garamond' }) ? 'is-active' : ''}
+                onClick={() => toggle('textStyle', { fontFamily: 'cursive' })}
+                className={editor.isActive('textStyle', { fontFamily: 'cursive' }) ? 'is-active' : ''}
             >
-                garamond
+                cursive
             </button>
             <button
                 onClick={() => toggle('textStyle', { fontFamily: 'gerogia' })}
@@ -56,12 +55,6 @@ function FontMenu({ editor, popup, setPopup, toggle }) {
                 className={editor.isActive('textStyle', { fontFamily: 'courier' }) ? 'is-active' : ''}
             >
                 courier
-            </button>
-            <button
-                onClick={() => toggle('textStyle', { fontFamily: 'courier new' })}
-                className={editor.isActive('textStyle', { fontFamily: 'courier new' }) ? 'is-active' : ''}
-            >
-                courier new
             </button>
         </Popup> }
       </>
